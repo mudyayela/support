@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-error_reporting(1);
-date_default_timezone_set('AFRICA/NAIROBI');
-require_once  'vendor/autoload.php';
-include_once 'database/index.php';
-
-
 
 
 define('CURRENCY','$');
@@ -22,6 +16,20 @@ define('MAIL_TO','philnjugunah@gmail.com');
 
 
 define('CONTROLLER_PATH','\\App\\Controller\\');
+define('DB_NAME','shop');
+define('DB_HOST','localhost');
+define('DB_USER','root');
+define('DB_PASSWORD','root');
+
+
+error_reporting(1);
+date_default_timezone_set('AFRICA/NAIROBI');
+require_once  'vendor/autoload.php';
+include_once 'database/index.php';
+
+
+
+
 
 
 
