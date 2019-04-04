@@ -1,0 +1,40 @@
+
+<!-- Footer -->
+<footer class="page-footer font-small blue" id="my-footer">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© <?= COPYRIGHT ?> Copyright:
+        <a href="#"> <?= BUSINESS_NAME ?></a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+<!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/js/mdb.min.js"></script>
+
+
+    <script>
+    $(document).ready(function () {
+        $('#dtOrderExample').DataTable({
+            columnDefs: [{
+                orderable: false,
+                targets: 3
+            }]
+        });
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+
+
+
+</body>
+</html>
