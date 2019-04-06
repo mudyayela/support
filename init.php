@@ -10,13 +10,15 @@ define('BUSINESS_TEL','+1 87645324');
 define('BUSINESS_EMAIL','admin@gmail.com');
 define('COPYRIGHT',\Carbon\Carbon::now()->format('Y'));
 
-define('MAILGUN_DOMAIN','dotheessay.com');
-define('MAILGUN_SECRET','key-e0e32a4826c2dc49ac5529f2eca85810');
-
+define('MAILGUN_DOMAIN','');
+define('MAILGUN_SECRET','');
+define('EMAIL','');
+define('PASSWORD','');
 define('MAIL_TO','philnjugunah@gmail.com');
 
 
 define('CONTROLLER_PATH','\\App\\Controller\\');
+
 define('DB_NAME','shop');
 define('DB_HOST','localhost');
 define('DB_USER','root');
