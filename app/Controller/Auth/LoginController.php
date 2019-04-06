@@ -89,6 +89,7 @@ class LoginController
                 $_SESSION['id'] = $client->id;
                 $_SESSION['name'] = $client->name;
                 $_SESSION['email'] = $client->email;
+                $_SESSION['type'] = "client";
 
                return header("Location:".url('dashboard'));
             }

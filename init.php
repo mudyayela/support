@@ -12,8 +12,8 @@ define('COPYRIGHT',\Carbon\Carbon::now()->format('Y'));
 
 define('MAILGUN_DOMAIN','');
 define('MAILGUN_SECRET','');
-define('EMAIL','');
-define('PASSWORD','');
+define('GMAIL_USERNAME','');
+define('GMAIL_PASSWORD','');
 define('MAIL_TO','philnjugunah@gmail.com');
 
 

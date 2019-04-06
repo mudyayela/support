@@ -126,8 +126,8 @@ class TicketObserver
         try{
 
            $transport = (new Swift_SmtpTransport('smtp.gmail.com', 25))
-                ->setUsername('philnjugunah@gmail.com')
-                ->setPassword('kaguongo')->setEncryption('tls');
+                ->setUsername(GMAIL_USERNAME)
+                ->setPassword(GMAIL_PASSWORD)->setEncryption('tls');
 
             $mailer = new Swift_Mailer($transport);
 
