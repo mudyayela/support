@@ -21,6 +21,7 @@ use App\Model\TicketDiscussion;
 use App\Model\User;
 use App\Utilies\DB;
 use Carbon\Carbon;
+use http\Client\Response;
 
 class TicketController
 {
@@ -353,6 +354,7 @@ class TicketController
 
 
             DB::rollBack();
+            return header('Location: ' . url('tickets/escalation-rules'));
         }
 
 
@@ -372,4 +374,50 @@ class TicketController
 
     }
 
+
+    public function escalateThis()
+    {
+
+
+        $ticket = Ticket::where('id',$_GET['id'])->first();
+
+
+
+        $departments = Department::where('id','!=',$ticket->department->id)->get();
+
+
+
+        $priorities = Priority::all();
+
+
+        $users = User::where('id','!=', $_SESSION['id'])
+            ->get();
+
+
+
+
+        return view('admin/tickets/escalation/issue', compact('ticket','priorities','departments','users'));
+
+
+    }
+
+
+    public function escalationThisTicket()
+    {
+
+
+        $ticket = Ticket::where('id', $_POST['id'])->first();
+
+        $ticket->priority = $_POST['priority_id'];
+
+        $escalate = EscalationTicket::create([
+            'ticket_id'  => $ticket->id,
+            'user_id'    => $_POST['user_id']
+        ]);
+
+
+
+        return header('Location: ' . url('/tickets/view?id='.$ticket->id));
+
+    }
 }

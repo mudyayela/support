@@ -200,8 +200,18 @@ getHeader();
                 </div>
                 <div class="panel panel-body">
                     <ul class="ticket-information">
+                        <?php
+                        if ($_SESSION['type'] != 'client'){
+                            ?>
+                            <li><a href="<?= url('/tickets/escalate?id='.$ticket->id)?>" class="badge badge-warning">Escalate this Issue
+                                    <br>
+                                </a>
+                            </li>
+                            <?php
+                        }
+                        ?>
                         <li>#<?= $ticket->id?>  <?= $ticket->subject?>
-                            <span class="<?= $ticket->closed_at ? "class='pabge badge-inverse'" : "class='pabge badge-primary'"?>"
+                            <span class="<?= $ticket->closed_at ? "class='badge badge-inverse'" : "class='badge badge-primary'"?>"
                         </li>
                         <li>Status<br>
                             <span class="badge badge-<?= $ticket->status == 'closed' ? "danger" : "success"?>"><?= $ticket->status?></span>

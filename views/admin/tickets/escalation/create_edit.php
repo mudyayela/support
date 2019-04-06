@@ -5,6 +5,7 @@ getHeader();
 <style>
     .container{
 
+        margin-bottom: 2em;
     }
 
     @media screen and (min-height: 700px) {

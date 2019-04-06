@@ -3,6 +3,8 @@
 //$path = ($_SERVER['PATH_INFO']);
 
 
+use App\Model\DepartmentUsers;
+
 $pathOld = ($_SERVER['PATH_INFO']);
 
 
@@ -92,6 +94,15 @@ switch ($path) {
 
         break;
 
+
+    case "/tickets/escalate":
+
+        return (new \App\Controller\Ticket\TicketController())->escalateThis();
+
+        break;
+
+
+
     case "/tickets/reply":
 
         return (new \App\Controller\Ticket\TicketController())->reply();
@@ -120,6 +131,17 @@ switch ($path) {
     case "/tickets/escalation-rules-new":
 
         return (new \App\Controller\Ticket\TicketController())->escalationNew();
+
+        break;
+
+
+
+
+    case "/tickets/escalation/escalate-ticket":
+
+
+
+        return (new \App\Controller\Ticket\TicketController())->escalationThisTicket();
 
         break;
 

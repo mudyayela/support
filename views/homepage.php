@@ -7,6 +7,11 @@ getHeader()
 
 ?>
 <style>
+    .product{
+        clear: both;
+        margin-bottom: 2em;
+    }
+    
     #products {
         display: grid;
         grid-template-columns: auto auto auto auto;
@@ -15,8 +20,21 @@ getHeader()
         top: 1em;
         padding: 2em;
         width: 100%;
-        height: 200px;
-        min-height: 100% !important;
+
+    }
+
+
+    @media screen and (max-width: 1100px) {
+
+        #products {
+            display: grid;
+            grid-gap: 1em;
+            grid-template-columns: auto auto auto;
+            top: 1em;
+            padding: 1em;
+            box-sizing: border-box;
+            width: 100%;
+        }
 
     }
 
@@ -29,28 +47,11 @@ getHeader()
             top: 1em;
             padding: 1em;
             box-sizing: border-box;
-            height: 200px;
             width: 100%;
-            min-height: 100% !important;
         }
 
     }
 
-    @media screen and (max-width: 1100px) {
-
-        #products {
-            display: grid;
-            grid-gap: 1em;
-            grid-template-columns: auto auto auto;
-            top: 1em;
-            padding: 1em;
-            box-sizing: border-box;
-            height: 200px;
-            width: 100%;
-            min-height: 100% !important;
-        }
-
-    }
 
 
     @media screen and (max-width: 500px) {
@@ -91,7 +92,7 @@ getHeader()
     #my-footer{
         position: relative;
         bottom: 0;
-        margin-top: 70%;
+        margin-top: 1em;
     }
 </style>
 

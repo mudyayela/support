@@ -1,7 +1,8 @@
 <?php
 session_start();
-
-
+error_reporting(1);
+date_default_timezone_set('AFRICA/NAIROBI');
+require_once  'vendor/autoload.php';
 
 define('CURRENCY','$');
 define('BUSINESS_NAME','Cosmetic and Beauty Shop');
@@ -21,14 +22,7 @@ define('DB_HOST','localhost');
 define('DB_USER','root');
 define('DB_PASSWORD','root');
 
-
-error_reporting(1);
-date_default_timezone_set('AFRICA/NAIROBI');
-require_once  'vendor/autoload.php';
 include_once 'database/index.php';
-
-
-
 
 
 
