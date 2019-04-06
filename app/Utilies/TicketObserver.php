@@ -136,8 +136,6 @@ class TicketObserver
                 ->setFrom(['philnjugunah@gmail.com' =>$ticket->client->name])
                 ->setTo(['philnjugunah@gmail.com', 'philnjugunah@gmail.com' => 'Philip Njuguna'])
                 ->setBody(isset($body) ? $body : $ticket->message);
-
-
               $mailer->send($message);
 
 
