@@ -1,8 +1,8 @@
 <?php getHeader()
 ?>
 <style>
-    #body > .container{
-       height: 100%;
+    #body .container{
+        height: 76vh;
     }
     .container{
         padding: 2em;

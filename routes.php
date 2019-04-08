@@ -63,6 +63,11 @@ switch ($path) {
         return (new \App\Controller\Auth\DashBoardController())->index();
         //return require_once "views/admin/dashboard.php";
         break;
+    case "/products/view":
+
+        return (new \App\Controller\ProductController())->viewProducts();
+        //return require_once "views/admin/dashboard.php";
+        break;
 
 
     case "/tickets":

@@ -129,7 +129,7 @@ getHeader()
 
                     if (isset($_SESSION['client']) || ! isset($_SESSION['user']))
                     {
-                        ?> <a href="<?= url('/tickets/add')?>" class="btn btn-primary">Order</a>
+                        ?> <a href="<?= url('/products/view?id='.$product->id)?>" class="btn btn-primary">View Details</a>
                         <?php
                     }
 

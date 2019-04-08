@@ -3,6 +3,7 @@
 namespace App\Controller\Auth;
 
 
+use App\Model\Product;
 use App\Model\User;
 use Carbon\Carbon;
 

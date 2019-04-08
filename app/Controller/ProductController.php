@@ -26,6 +26,19 @@ class ProductController
 
     }
 
+
+
+    public function viewProducts()
+    {
+
+        $product = Product::where('id', $_GET['id'])->first();
+
+
+        return view('single_product', compact("product"));
+
+    }
+
+
     public function create()
     {
         $product = Product::where('id', $_GET['id'])->first();

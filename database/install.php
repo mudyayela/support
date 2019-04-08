@@ -199,6 +199,7 @@ try{
         $table->string('name');
         $table->double('price' , 12 ,2);
         $table->string('image');
+        $table->string('description');
         $table->string('slug');
         $table->timestamps();
 
