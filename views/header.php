@@ -98,9 +98,24 @@ $uri = end($request);
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="<?= url('/home') ?>">Home <span class="sr-only">(current)</span></a>
-            </li>
+
+            <?php
+            if (isset($_SESSION['user']) || isset($_SESSION['client'])) {
+                ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= url('/home') ?>">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <?php
+            }
+            else{
+                ?>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= url('/dashboard') ?>">Dashboard <span class="sr-only">(current)</span></a>
+                </li>
+                <?php
+            }
+            ?>
 
         </ul>
         <ul class="navbar-nav pull-right">
