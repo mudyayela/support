@@ -181,7 +181,6 @@ class LoginController
 
         if ($_SESSION['type'] == 'client') {
 
-            dd('closer');
 
             $client = Client::where([
                 'id' => $_SESSION['id'],

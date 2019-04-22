@@ -32,23 +32,8 @@ class SendSms
     public function send($to , $message)
     {
 
-        dd($this->client->message()->send(['to' => (int)$to , 'text' => $message ,"from" => "nexmo"])->getResponseData());
+        $this->client->message()->send(['to' => (int)$to , 'text' => $message ,"from" => "nexmo"])->getResponseData();
 
-        try{
-            $response = $this->client->message()->send([
-                'to' => (int)str_replace("+","", $to),
-                'from' => BUSINESS_NAME,
-                'text' => $message
-            ]);
-
-
-            return $response->getResponseData();
-
-        }catch (\Exception $exception)
-        {
-            return true;
-
-        }
         
     }
 

@@ -49,7 +49,7 @@ function guest(){
 
 
             }catch (Exception $exception){
-                dd($exception);
+                return header("Location:" . url('confirm-phone'));
             }
 
         }
