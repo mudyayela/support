@@ -190,7 +190,9 @@ class LoginController
 
                 $client->save();
 
-            }if ($_SESSION['type'] == 'user')
+            }
+
+            if ($_SESSION['type'] == 'user')
             {
                 $user = User::where('id', $_SESSION['id'])->first();
 
