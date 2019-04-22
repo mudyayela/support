@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Utilies\SendSms;
 use Symfony\Component\VarDumper\VarDumper;
 
 function getHeader(){
@@ -33,9 +34,25 @@ function guest(){
         return header('Location:'. url('/login'));
     }
 
-    if (isset($_SESSION['user'])){
+    if (isset($_SESSION['client'])){
 
 
+        $client = \App\Model\Client::where('id', $_SESSION['id'])->first();
+
+        if (is_null($client->confirmed_at)){
+
+            try{
+              SendSms::build()
+                    ->send($client->tell , $client->confirmation_code);
+
+                return header("Location:" . url('confirm-phone'));
+
+
+            }catch (Exception $exception){
+                dd($exception);
+            }
+
+        }
     }
 
 

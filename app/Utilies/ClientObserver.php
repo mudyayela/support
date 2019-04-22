@@ -19,14 +19,14 @@ class ClientObserver
 
         try{
             $code = $client->generateConfirmationCode();
-            $body = 'Use this link '. url('verify-email?_token='.password_hash($code , PASSWORD_BCRYPT));
+            $body = 'Use this '.$code;
             $subject = 'Confirm your account ';
 
             SendEmail::buil()
                 ->send($client->email, $body , $subject);
 
             $response = SendSms::build()
-                ->verify($client->tell);
+                ->send($client->tell , $code);
 
 
 

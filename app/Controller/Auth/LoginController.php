@@ -179,28 +179,45 @@ class LoginController
     public function verify()
     {
 
+        if ($_SESSION['type'] == 'client') {
 
-        if (SendSms::build()->verifyRequest()){
+            dd('closer');
 
-            if ($_SESSION['type'] == 'client')
-            {
-                $client = Client::where('id', $_SESSION['id'])->first();
-
+            $client = Client::where([
+                'id' => $_SESSION['id'],
+                'confirmation_code' => $_POST['code']
+            ])->first();
+            if ($client) {
                 $client->confirmed_at = Carbon::now();
 
                 $client->save();
-
+                return header("Location:" . url('dashboard'));
             }
-
-            if ($_SESSION['type'] == 'user')
-            {
-                $user = User::where('id', $_SESSION['id'])->first();
-                $user->confirmed_at = Carbon::now();
-                $user->save();
-            }
-
-            return header("Location:" . url('dashboard'));
+            return header("Location:" . url('confirm-phone?message= wrong code'));
         }
+
+        if ($_SESSION['type'] == 'user') {
+
+            $user = User::where([
+                'id' => $_SESSION['id'],
+                'confirmation_code' => $_POST['code']
+            ])->first();
+            if ($user) {
+                $user->confirmed_at = Carbon::now();
+
+                $user->save();
+                return header("Location:" . url('dashboard'));
+            }
+            return header("Location:" . url('confirm-phone?message= wrong code'));
+        }
+        if (isset($_SESSION['id']))
+        {
+
+            return header("Location:" . url('confirm-phone?message= wrong code'));
+
+        }
+
+        return header("Location:" . url('login'));
 
 
     }

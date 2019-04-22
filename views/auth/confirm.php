@@ -13,6 +13,24 @@
     }
 </style>
 
+<?php
+
+if (isset($_GET['message']))
+{
+    ?>
+    <div class="container">
+
+        <div class="alert alert-danger" role="alert">
+            <?= $_GET['message']?>
+        </div>
+
+    </div>
+    <?php
+}
+?>
+
+<title>Confirm Account Details</title>
+
 <form
         method="post"
         id="postThisForm"
