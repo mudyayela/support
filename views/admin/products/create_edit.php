@@ -44,20 +44,20 @@ getHeader();
 
                 <!-- Name -->
                 <div class="md-form">
-                    <input type="text" id="materialLoginFormEmail" value="<?= $product->name?>" name="name" autocomplete="off" class="form-control">
+                    <input type="text" required id="materialLoginFormEmail" value="<?= $product->name?>" name="name" autocomplete="off" class="form-control">
                     <label for="materialLoginFormEmail">Product Name</label>
                 </div>
 
 
                 <!-- Name -->
                 <div class="md-form">
-                    <input type="text" id="materialLoginFormEmail" value="<?= $product->price?>" name="price" autocomplete="off" class="form-control">
+                    <input type="text" required id="materialLoginFormEmail" value="<?= $product->price?>" name="price" autocomplete="off" class="form-control">
                     <label for="materialLoginFormEmail">Price</label>
                 </div>
 
                 <!-- Image -->
                 <div class="md-form">
-                    <input type="file" autocomplete="off" name="image" value="<?= $product->image?>" id="materialLoginFormPassword"    >
+                    <input type="file" required autocomplete="off" name="image" value="<?= $product->image?>" id="materialLoginFormPassword"    >
                     <label for="materialLoginFormPassword">Image</label>
                     <br>
                     <br>
@@ -68,7 +68,7 @@ getHeader();
 
                 <!-- Description -->
                 <div class="md-form">
-                    <textarea autocomplete="off" name="description" id="materialLoginFormPassword" cols="5" rows="10" class="form-control"><?= $product->description?></textarea>
+                    <textarea autocomplete="off" required name="description" id="materialLoginFormPassword" cols="5" rows="10" class="form-control"><?= $product->description?></textarea>
                     <label for="materialLoginFormPassword">Description</label>
                 </div>
 

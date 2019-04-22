@@ -10,6 +10,7 @@ namespace App\Model;
 
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class User extends Model
 {
@@ -40,6 +41,18 @@ class User extends Model
     {
 
         return $this->attributes['name'] = ucwords(strtolower($value));
+
+    }
+
+    public function generateConfirmationCode()
+    {
+        $code =  Str::random('5');
+        if ($code = $this->confirmation_code ){
+
+            return $this->generateConfirmationCode();
+        }
+        return $code;
+
 
     }
 

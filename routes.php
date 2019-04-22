@@ -32,6 +32,17 @@ switch ($path) {
         return (new \App\Controller\Auth\LoginController())->register();
         break;
 
+    case "/confirm-phone":
+
+        return (new \App\Controller\Auth\LoginController())->confirmPhone();
+        break;
+
+
+    case "/verify":
+
+        return (new \App\Controller\Auth\LoginController())->verify();
+        break;
+
     case "/register/store":
 
         return (new \App\Controller\Auth\LoginController())->processRegister();

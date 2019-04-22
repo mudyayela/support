@@ -5,14 +5,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="<?= url('public/style.css')?>" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.4/css/mdb.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/@ionic/core@latest/dist/ionic.js"></script>
 
     <style>
+
+        body{
+            min-height: 100vh !important;
+        }
+
         #my-footer{
 
 
@@ -63,6 +70,11 @@
             }
         }
 
+        @media screen and (max-width: 1400px) {
+
+
+        }
+
     </style>
 
 </head>
@@ -103,7 +115,7 @@ $uri = end($request);
             if (isset($_SESSION['user']) || isset($_SESSION['client'])) {
                 ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= url('/home') ?>">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?= url('/dashboard') ?>">Dashboard <span class="sr-only">(current)</span></a>
                 </li>
                 <?php
             }
@@ -111,7 +123,7 @@ $uri = end($request);
                 ?>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= url('/dashboard') ?>">Dashboard <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="<?= url('/home') ?>">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <?php
             }

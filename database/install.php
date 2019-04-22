@@ -19,6 +19,7 @@ try{
         $table->string('tell')->nullable()->unique();
         $table->string('email')->unique();
         $table->enum('type' ,['admin','agent']);
+        $table->string('confirmation_code')->nullable();
         $table->timestamp('confirmed_at')->nullable();
         $table->string('password');
         $table->timestamps();
@@ -29,6 +30,7 @@ try{
         $table->string('name');
         $table->string('tell')->nullable()->unique();
         $table->string('email')->unique();
+        $table->string('confirmation_code')->nullable();
         $table->timestamp('confirmed_at')->nullable();
         $table->string('password');
         $table->timestamps();

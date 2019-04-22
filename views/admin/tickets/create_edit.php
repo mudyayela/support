@@ -31,14 +31,14 @@ getHeader();
 
                     <!-- Name -->
                     <div class="md-form mt-3">
-                        <input type="text" name="subject" id="materialContactFormName" class="form-control">
+                        <input type="text" name="subject" required id="materialContactFormName" class="form-control">
                         <label for="materialContactFormName">Subject</label>
                     </div>
 
 
                     <!-- Subject -->
                     <span>Department</span>
-                    <select name="department_id" class="mdb-select">
+                    <select name="department_id" required class="mdb-select">
                         <?php
 
                         foreach ($departments as $department)
@@ -54,7 +54,7 @@ getHeader();
                     </select>
                     <!-- Subject -->
                     <span>Priority</span>
-                    <select name="priority_id" class="mdb-select">
+                    <select name="priority_id" required class="mdb-select">
                         <?php
 
                         foreach ($priorities as $priority)
@@ -71,7 +71,7 @@ getHeader();
 
                     <!--Message-->
                     <div class="md-form">
-                        <textarea name="message" id="materialContactFormMessage" class="form-control md-textarea" rows="3"></textarea>
+                        <textarea name="message" required id="materialContactFormMessage" class="form-control md-textarea" rows="3"></textarea>
                         <label for="materialContactFormMessage">Message</label>
                     </div>
 

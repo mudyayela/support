@@ -35,7 +35,7 @@ getHeader();
                         <!-- Email -->
                         <div class="md-form col-md-3">
 
-                            <input type="text" name="name" value="<?= $department->name ?>" id="materialLoginFormEmail"
+                            <input type="text" required name="name" value="<?= $department->name ?>" id="materialLoginFormEmail"
                                    class="form-control">
                             <label for="materialLoginFormEmail">Department Name</label>
 
@@ -57,6 +57,7 @@ getHeader();
                                 <input
                                         type="checkbox"
                                         name="user[]"
+                                        required
                                         class="form-check-input"
                                         value="<?= $user->id?>" id="materialUnchecked"
                                       <?php

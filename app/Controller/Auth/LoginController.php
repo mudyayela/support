@@ -10,7 +10,10 @@ namespace App\Controller\Auth;
 
 
 use App\Model\Client;
+use App\Model\User;
+use App\Utilies\SendSms;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class LoginController
 {
@@ -19,10 +22,10 @@ class LoginController
     public function index()
     {
 
-        if (isset($_SESSION['user']) || $_SESSION['client']){
+        if (isset($_SESSION['user']) || $_SESSION['client']) {
 
 
-            return header('location:'. url('/'));
+            return header('location:' . url('/'));
         }
 
 
@@ -34,9 +37,7 @@ class LoginController
     {
 
 
-
-
-        if (strtolower($_SERVER['REQUEST_METHOD'])  != 'post' ){
+        if (strtolower($_SERVER['REQUEST_METHOD']) != 'post') {
 
             throw  new \Exception("Method not Allowed");
         }
@@ -46,7 +47,7 @@ class LoginController
 
             $error = "E-mail and password and required";
 
-            header("Location:".url('login?error='.$error));
+            header("Location:" . url('login?error=' . $error));
         }
 
         $user = \App\Model\User::where([
@@ -54,12 +55,10 @@ class LoginController
         ])->first();
 
 
+        if ($user) {
 
-        if ($user){
 
-
-            if (password_verify($_POST['password'] , $user->password)) {
-
+            if (password_verify($_POST['password'], $user->password)) {
 
 
                 $_SESSION['user'] = $user;
@@ -67,8 +66,9 @@ class LoginController
                 $_SESSION['name'] = $user->name;
                 $_SESSION['email'] = $user->email;
                 $_SESSION['type'] = $user->type;
+                $_SESSION['confirm'] = $user->type;
 
-               return header("Location:".url('dashboard'));
+                return header("Location:" . url('dashboard'));
             }
         }
 
@@ -77,12 +77,9 @@ class LoginController
         ])->first();
 
 
+        if ($client) {
 
-
-
-        if ($client){
-
-            if (password_verify($_POST['password'] , $client->password)) {
+            if (password_verify($_POST['password'], $client->password)) {
 
 
                 $_SESSION['client'] = $client;
@@ -91,7 +88,7 @@ class LoginController
                 $_SESSION['email'] = $client->email;
                 $_SESSION['type'] = "client";
 
-               return header("Location:".url('dashboard'));
+                return header("Location:" . url('dashboard'));
             }
 
             die($client->email);
@@ -100,8 +97,7 @@ class LoginController
 
         $error = "wrong password";
 
-        header("Location:".url('login?error='.$error));
-
+        header("Location:" . url('login?error=' . $error));
 
 
     }
@@ -114,7 +110,7 @@ class LoginController
         session_destroy();
 
 
-       return header('Location:'. url('/'));
+        return header('Location:' . url('/'));
 
     }
 
@@ -122,7 +118,7 @@ class LoginController
     {
         $client = new Client();
 
-        if (isset($_GET['id'])){
+        if (isset($_GET['id'])) {
             $client = Client::where('id', $_GET['id'])->first();
         }
 
@@ -132,42 +128,63 @@ class LoginController
 
     public function processRegister()
     {
-       if ($_SERVER['REQUEST_METHOD'] != 'POST'){
+        if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
-           throw new \Exception("method not allowed");
-       }
+            throw new \Exception("method not allowed");
+        }
 
-       if (isset($_POST['id']) && ! is_null($_POST['id'])){
+        try {
+            if (isset($_POST['id']) && !is_null($_POST['id'])) {
 
-           $client = Client::where('id', $_POST['id'])->first();
+                $client = Client::where('id', $_POST['id'])->first();
 
-           $client->name = $_POST['name'];
-           $client->email = $_POST['email'];
-           $client->tell = $_POST['phone_number'];
-           $client->confirmed_at = Carbon::now();
-           $client->password = password_hash($_POST['password'] ,PASSWORD_BCRYPT);
-           $client->save();
-       }
-       else{
+                $client->name = $_POST['name'];
+                $client->email = $_POST['email'];
+                $client->tell = $_POST['phone_number'];
+                $client->confirmed_at = Carbon::now();
+                $client->password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $client->save();
+            } else {
 
-           $client = Client::create([
-               'name' => $_POST['name'],
-               'email' => $_POST['email'],
-               'tell' => $_POST['phone_number'],
-               'password' => password_hash($_POST['password'] ,PASSWORD_BCRYPT),
-               'confirmed_at' => Carbon::now(),
-           ]);
+                $client = Client::create([
+                    'name' => $_POST['name'],
+                    'email' => $_POST['email'],
+                    'tell' => $_POST['phone_number'],
+                    'confirmation_code' => (new Client())->generateConfirmationCode(),
+                    'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
+                ]);
 
+            }
 
-       }
+            $_SESSION['client'] = $client;
 
-       $_SESSION['client'] = $client;
+            $_SESSION['id'] = $client->id;
+            $_SESSION['name'] = $client->name;
+            $_SESSION['email'] = $client->email;
 
-       $_SESSION['id'] = $client->id;
-       $_SESSION['name'] = $client->name;
-       $_SESSION['email'] = $client->email;
+            return header('Location:' . url('/confirm-phone?message=welcome'));
 
-        return header('Location:'. url('/?message=welcome'));
+        } catch (\Exception $exception) {
+
+        }
+    }
+
+    public function confirmPhone()
+    {
+
+        return view('auth/confirm');
+
+    }
+
+    public function verify()
+    {
+
+        if (SendSms::build()->verifyRequest()){
+
+            dd('closet');
+            return header("Location:" . url('dashboard'));
+        }
+
 
     }
 }

@@ -6,6 +6,10 @@ getHeader();
     .container{
         margin: 20px;
     }
+    .ticket-item{
+
+
+    }
     #ticket-details{
         display: grid;
         grid-template-columns: 70% auto;
@@ -15,7 +19,7 @@ getHeader();
 
     ul.reply-heading li {
         display: inline;
-        padding: 0.3em;
+        margin: 0px;
     }
 
     ul.ticket-information li{
@@ -44,15 +48,26 @@ getHeader();
             padding: 1em;
         }
     }
+    .panel-primary{
+        box-shadow: 0 5px 8px rgba(0, 0, 0, .3);
+        margin-top: 20px;
+        padding-bottom: 2em;
+        margin-left: 2px;
+    }
+    .panel-body{
+
+        margin-left: 2px;
+    }
 
     #ticket-details .discussion:nth-child(odd){
 
         background: #cccccc;
     }
 
-    #ticket-details .discussion:nth-child(even){
-
-        background: #fff;
+    #ticket-details .discussion p{
+        margin-left: 20px;
+        margin-bottom: 40px;
+        margin-top: 30px;
     }
 
     .panel-heading{
@@ -65,13 +80,14 @@ getHeader();
         padding: 1em;
         margin-top: 1em;
     }
-    .panel-boady{
-        background: #cccccc;
-        padding: 2em;
-        margin-top: 2em;
+    .ticket-info{
+        box-shadow: 0 5px 8px rgba(0, 0, 0, .3);
+        padding-bottom: 3em;
+
     }
 
 </style>
+<title><?= $ticket->subject?></title>
 <div class="container">
 
 
@@ -103,6 +119,7 @@ getHeader();
                         <form
                             class="text-center"
                             method="post"
+                            id="submitMessage"
                             action="<?= url('tickets/reply')?>"
                             style="color: #757575;"
                         >
@@ -120,6 +137,7 @@ getHeader();
                                             id="materialContactFormMessage"
                                             class="form-control md-textarea"
                                             name="message"
+
                                             rows="3"></textarea>
                                         <label for="materialContactFormMessage">Message</label>
                                     </div>
@@ -128,7 +146,10 @@ getHeader();
                             </div>
 
                             <!-- Sign up button -->
-                            <button class="btn btn-outline-info btn-rounded  my-4 waves-effect z-depth-0" type="submit">Send</button>
+                            <ion-button id="submit-message">
+                                <ion-icon name="add" slot="start"></ion-icon>Send
+                            </ion-button>
+
 
 
                         </form>
@@ -144,13 +165,14 @@ getHeader();
 
             foreach ($ticket->discussions as $discussion) {
 
-                $title =  ($discussion->userable instanceof \App\Model\User) ? "Agent" :"Client";;
+                $title =  ($discussion->userable instanceof \App\Model\User) ? "Agent" :"Client";
+                $bg =  ($discussion->userable instanceof \App\Model\User) ? "bg-success" :"bg-warning";
 
                 ?>
 
                 <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h5 class="panel-title">
+                    <div class="panel-heading <?= $bg?>">
+                        <h5 class="panel-title ">
                             <ul class="reply-heading">
                                 <li><?=  $title .' ' .$discussion->userable->name ?></li>
                                 <li><?= $discussion->created_at ?></li>
@@ -175,7 +197,7 @@ getHeader();
 
 
             <div class="panel panel-primary">
-                <div class="panel-heading">
+                <div class="panel-heading bg-warning">
                     <ul class="reply-heading">
                         <li> Client <?= $ticket->client->name ?></li>
                         <li><?= $ticket->created_at ?></li>
@@ -183,7 +205,7 @@ getHeader();
 
                 </div>
                 <div class="panel panel-body">
-                    <p>
+                    <p class="card-item">
                         <?= $ticket->message ?>
 
                     </p>
@@ -192,7 +214,7 @@ getHeader();
         </div>
 
         <div class="ticket-item">
-            <div class="panel panel-success">
+            <div class="panel panel-success ticket-info">
                 <div class="panel-heading card-header info-color white-text text-center py-4"">
                     <h5 class="panel-title">
                         Ticket information
@@ -200,14 +222,19 @@ getHeader();
                 </div>
                 <div class="panel panel-body">
                     <ul class="ticket-information">
+
                         <?php
-                        if ($_SESSION['type'] != 'client'){
-                            ?>
-                            <li><a href="<?= url('/tickets/escalate?id='.$ticket->id)?>" class="badge badge-warning">Escalate this Issue
-                                    <br>
-                                </a>
-                            </li>
-                            <?php
+                        if (is_null($ticket->closed_at)) {
+
+                            if ($_SESSION['type'] != 'client') {
+                                ?>
+                                <li><a href="<?= url('/tickets/escalate?id=' . $ticket->id) ?>"
+                                       class="badge badge-warning">Escalate this Issue
+                                        <br>
+                                    </a>
+                                </li>
+                                <?php
+                            }
                         }
                         ?>
                         <li>#<?= $ticket->id?>  <?= $ticket->subject?>
@@ -249,8 +276,44 @@ getHeader();
             </div>
         </div>
     </div>
+<ion-alert-controller></ion-alert-controller>
+<ion-loading-controller></ion-loading-controller>
 </div>
 
 
 <?php
 getFooter();
+?>
+<script>
+    document.querySelector('#submit-message').addEventListener('click', () => {
+
+        const message = document.querySelector('#materialContactFormMessage').value
+
+        const alertContr = document.querySelector('ion-alert-controller')
+        const loadingContr = document.querySelector('ion-loading-controller')
+
+        if (message.trim().length < 1)
+        {
+            alertContr.create({
+                message: "Message is required",
+                heading:  "invalid message",
+                buttons: ['OK']
+            }).then(alert => {
+                alert.present();
+            })
+            return ;
+        }
+        loadingContr.create({
+            message: "Message is required",
+            heading:  "invalid message",
+
+        }).then(alert => {
+            alert.present();
+        })
+
+        document.getElementById('submitMessage').submit();
+
+    })
+
+
+</script>

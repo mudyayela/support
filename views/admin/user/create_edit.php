@@ -36,6 +36,7 @@ getHeader();
                             <input
                                     name="name"
                                     type="text"
+                                    required
                                     class="form-control"
                                     value="<?= $user->name ?>"
                             >
@@ -48,6 +49,7 @@ getHeader();
                             <input
                                     name="email"
                                     type="email"
+                                    required
                                     class="form-control"
                                     value="<?= $user->email ?>"
                             >
@@ -59,6 +61,7 @@ getHeader();
                         <div class="col-md-4">
                             <input
                                     name="tel"
+                                    required
                                     class="form-control"
                                     type="tel"
                                     value="<?= $user->tell ?>"
@@ -71,6 +74,7 @@ getHeader();
                         <div class="col-md-4">
                             <select
                                     name="type"
+                                    required
                             >
                                 <option value="admin"
 

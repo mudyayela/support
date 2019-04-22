@@ -67,6 +67,7 @@ getHeader();
                                 <input type="text"
                                        id="materialContactFormName"
                                        class="form-control"
+                                       required
                                        name="name"
                                        value="<?= $rule->name?>"
                                 >
@@ -81,7 +82,7 @@ getHeader();
                             <div class="col-md-4">
                                 <!-- Subject -->
                                 <span>Priority</span>
-                                <select class="mdb-select form-control" name="rule_priority_id">
+                                <select class="mdb-select form-control" required name="rule_priority_id">
                                     <?php
                                     foreach ($priorities as $priority) {
 
@@ -104,7 +105,7 @@ getHeader();
                             <div class="col-md-4">
                                 <!-- Subject -->
                                 <span>Department</span>
-                                <select class="mdb-select form-control" name="rule_department_id">
+                                <select class="mdb-select form-control" required name="rule_department_id">
                                     <?php
                                     foreach ($departments as $department) {
 
@@ -126,7 +127,7 @@ getHeader();
                             <div class="col-md-4">
                                 <!-- Subject -->
                                 <span>Subject</span>
-                                <select class="mdb-select form-control" name="rule_status">
+                                <select class="mdb-select form-control" required name="rule_status">
 
                                     <?php
                                     foreach (ticketStatuses() as $status) {
@@ -158,7 +159,7 @@ getHeader();
                            <div class="col-md-4">
                                <!-- Subject -->
                                <span>Priority</span>
-                               <select class="mdb-select form-control" name="priority_id">
+                               <select class="mdb-select form-control" required name="priority_id">
                                    <?php
                                    foreach ($priorities as $priority) {
 
@@ -181,7 +182,7 @@ getHeader();
                            <div class="col-md-4">
                                <!-- Subject -->
                                <span>Department</span>
-                               <select class="mdb-select form-control" name="department_id">
+                               <select class="mdb-select form-control"  required name="department_id">
                                    <?php
                                    foreach ($departments as $department) {
 
@@ -203,7 +204,7 @@ getHeader();
                            <div class="col-md-4">
                                <!-- Subject -->
                                <span>Status</span>
-                               <select class="mdb-select form-control" name="status">
+                               <select class="mdb-select form-control" required name="status">
 
                                    <?php
                                    foreach (ticketStatuses() as $status) {
@@ -229,7 +230,7 @@ getHeader();
                            <div class="col-md-4">
                                <!-- Subject -->
                                <span>Flag To</span>
-                               <select class="mdb-select form-control" name="user_id">
+                               <select class="mdb-select form-control" required name="user_id">
 
                                    <?php
                                    foreach ($users as $user) {
@@ -259,6 +260,7 @@ getHeader();
                                    <input type="checkbox"
                                           id="materialContactFormName"
                                           class="form-control"
+                                          required
                                           name="notify"
                                        <?= $rule->action->notify ? "checked" : ""?>
                                    >
@@ -277,6 +279,7 @@ getHeader();
                                <textarea
                                    class="form-control text-area"
                                    name="message"
+                                   required
                                    rows="6"
                                ><?= $rule->action->message?></textarea>
 

@@ -9,7 +9,7 @@ function getHeader(){
 }
 function getBack(){
 
-    return  "<a onClick='window.history.back();' class='btn-floating btn-lg btn-success'>Back</a>";
+    return  "<a href='". url('dashboard')."' class='btn-floating btn-lg btn-success'>Back</a>";
 }
 function getFooter(){
 
@@ -32,6 +32,13 @@ function guest(){
     {
         return header('Location:'. url('/login'));
     }
+
+    if (isset($_SESSION['user'])){
+
+
+    }
+
+
 }
 
 

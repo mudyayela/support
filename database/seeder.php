@@ -12,8 +12,8 @@ App\Model\User::create([
     'confirmed_at' => \Carbon\Carbon::now()
 ]);
 
-App\Model\User::create([
-    'name' => "John Doe",
+$agent = App\Model\User::create([
+    'name' => "Agent Doe",
     "tell" => "294567789",
     "email" => 'agent@admin.com',
     'type' => 'agent',
@@ -21,8 +21,27 @@ App\Model\User::create([
     'confirmed_at' => \Carbon\Carbon::now()
 ]);
 
+$department = \App\Model\Department::create([
+    'name'  => 'Billing'
+]);
+
+$department->addUser($agent);
+
+$department = \App\Model\Department::create([
+    'name'  => 'Sales'
+]);
+
+$department->addUser($agent);
+
+$department = \App\Model\Department::create([
+    'name'  => 'Technical'
+]);
+
+$department->addUser($agent);
+
+
 App\Model\Client::create([
-    'name' => "John Doe",
+    'name' => "Client Doe",
     "tell" => "294567789",
     "email" => 'client@admin.com',
     "password" => password_hash("12345", PASSWORD_BCRYPT),

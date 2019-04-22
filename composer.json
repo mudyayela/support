@@ -1,13 +1,6 @@
 {
-    "name": "Support",
     "description": "Support tickets",
     "type": "project",
-    "authors": [
-        {
-            "name": "Philip Njuguna",
-            "email": "philipnjuguna66@gmail.com"
-        }
-    ],
     "require": {
         "php": "7.2.*",
         "illuminate/database": "^5.8",
@@ -24,7 +17,9 @@
         "symfony/config": "^4.2",
         "symfony/dependency-injection": "^4.2",
         "symfony/http-foundation": "^4.2",
-        "symfony/expression-language": "^4.2"
+        "symfony/expression-language": "^4.2",
+        "nexmo/client": "^1.7",
+        "nesbot/carbon": "^2.16"
     },
     "autoload": {
         "psr-4": {
