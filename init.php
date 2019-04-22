@@ -3,11 +3,11 @@ try{
 
     session_start();
     error_reporting(1);
-    date_default_timezone_set('AFRICA/NAIROBI');
+    date_default_timezone_set('EUROPE/LONDON');
     require_once  'vendor/autoload.php';
 
     define('CURRENCY','£');
-    define('BUSINESS_NAME','Cosmetic and Beauty Shop');
+    define('BUSINESS_NAME','Virgin Media');
     define('BUSINESS_TEL','+1 87645324');
     define('BUSINESS_EMAIL','mudy.ayela@gmail.com');
     define('COPYRIGHT', date('Y'));
