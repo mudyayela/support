@@ -195,9 +195,7 @@ class LoginController
             if ($_SESSION['type'] == 'user')
             {
                 $user = User::where('id', $_SESSION['id'])->first();
-
                 $user->confirmed_at = Carbon::now();
-
                 $user->save();
             }
 
