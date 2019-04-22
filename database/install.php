@@ -1,6 +1,4 @@
 <?php
-
-
 require_once  '../vendor/autoload.php';
 include_once '../init.php';
 include_once 'index.php';

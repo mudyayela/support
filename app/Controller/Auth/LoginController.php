@@ -157,7 +157,7 @@ class LoginController
             }
 
             $_SESSION['client'] = $client;
-
+            $_SESSION['type'] = "client";
             $_SESSION['id'] = $client->id;
             $_SESSION['name'] = $client->name;
             $_SESSION['email'] = $client->email;
@@ -179,9 +179,26 @@ class LoginController
     public function verify()
     {
 
+
         if (SendSms::build()->verifyRequest()){
 
-            dd('closet');
+            if ($_SESSION['type'] == 'client')
+            {
+                $client = Client::where('id', $_SESSION['id'])->first();
+
+                $client->confirmed_at = Carbon::now();
+
+                $client->save();
+
+            }if ($_SESSION['type'] == 'user')
+            {
+                $user = User::where('id', $_SESSION['id'])->first();
+
+                $user->confirmed_at = Carbon::now();
+
+                $user->save();
+            }
+
             return header("Location:" . url('dashboard'));
         }
 

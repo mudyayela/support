@@ -51,7 +51,7 @@ try{
 
     \App\Model\Ticket::observe(\App\Utilies\TicketObserver::class);
 
-    \App\Model\User::observe(\App\Utilies\UserObserver::class);
+    //\App\Model\User::observe(\App\Utilies\UserObserver::class);
 
     \App\Model\Client::observe(\App\Utilies\ClientObserver::class);
 
